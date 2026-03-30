@@ -19,10 +19,10 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "POST /api/v1/orders creates an order successfully" do
-    assert_difference ["Order.count", "Ticket.count"], 1 do
+    assert_difference [ "Order.count", "Ticket.count" ], 1 do
       post api_v1_orders_url, params: {
         customer_email: "fan@example.com",
-        items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+        items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
       }, as: :json
     end
 
@@ -60,12 +60,12 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
 
     TicketPurchaseService.call(
       customer_email: "first@example.com",
-      items: [{ ticket_type_id: @vip.id, quantity: 1 }]
+      items: [ { ticket_type_id: @vip.id, quantity: 1 } ]
     )
 
     post api_v1_orders_url, params: {
       customer_email: "second@example.com",
-      items: [{ ticket_type_id: @vip.id, quantity: 1 }]
+      items: [ { ticket_type_id: @vip.id, quantity: 1 } ]
     }, as: :json
 
     assert_response :unprocessable_entity
@@ -76,7 +76,7 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
   test "POST /api/v1/orders returns 422 with invalid email" do
     post api_v1_orders_url, params: {
       customer_email: "",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     }, as: :json
 
     assert_response :unprocessable_entity

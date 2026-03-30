@@ -23,7 +23,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "successfully purchases a single ticket type" do
     result = TicketPurchaseService.call(
       customer_email: "fan@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 2 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 2 } ]
     )
 
     assert result.success?
@@ -57,7 +57,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "captures price at time of purchase, not current price" do
     result = TicketPurchaseService.call(
       customer_email: "fan@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     )
 
     assert result.success?
@@ -68,7 +68,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
 
     result2 = TicketPurchaseService.call(
       customer_email: "other@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     )
 
     assert result2.success?
@@ -84,12 +84,12 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "fails when not enough tickets available" do
     TicketPurchaseService.call(
       customer_email: "first@example.com",
-      items: [{ ticket_type_id: @vip.id, quantity: 2 }]
+      items: [ { ticket_type_id: @vip.id, quantity: 2 } ]
     )
 
     result = TicketPurchaseService.call(
       customer_email: "second@example.com",
-      items: [{ ticket_type_id: @vip.id, quantity: 1 }]
+      items: [ { ticket_type_id: @vip.id, quantity: 1 } ]
     )
 
     assert_not result.success?
@@ -116,7 +116,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "fails with invalid email" do
     result = TicketPurchaseService.call(
       customer_email: "",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     )
 
     assert_not result.success?
@@ -136,7 +136,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "fails with zero quantity" do
     result = TicketPurchaseService.call(
       customer_email: "fan@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 0 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 0 } ]
     )
 
     assert_not result.success?
@@ -146,7 +146,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
   test "fails with nonexistent ticket type" do
     result = TicketPurchaseService.call(
       customer_email: "fan@example.com",
-      items: [{ ticket_type_id: 999999, quantity: 1 }]
+      items: [ { ticket_type_id: 999999, quantity: 1 } ]
     )
 
     assert_not result.success?
@@ -188,7 +188,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
           barrier.wait
           TicketPurchaseService.call(
             customer_email: "buyer#{i}@example.com",
-            items: [{ ticket_type_id: ticket_type.id, quantity: 1 }]
+            items: [ { ticket_type_id: ticket_type.id, quantity: 1 } ]
           )
         end
       end
@@ -216,7 +216,7 @@ class TicketPurchaseServiceTest < ActiveSupport::TestCase
           barrier.wait
           TicketPurchaseService.call(
             customer_email: "buyer#{i}@example.com",
-            items: [{ ticket_type_id: ticket_type.id, quantity: 3 }]
+            items: [ { ticket_type_id: ticket_type.id, quantity: 3 } ]
           )
         end
       end

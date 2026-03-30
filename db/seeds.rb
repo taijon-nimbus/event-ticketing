@@ -69,13 +69,13 @@ puts "  Alice's concert order: #{result.success? ? 'confirmed' : result.error}"
 
 result = TicketPurchaseService.call(
   customer_email: "alice@example.com",
-  items: [{ ticket_type_id: comedy_ga.id, quantity: 3 }]
+  items: [ { ticket_type_id: comedy_ga.id, quantity: 3 } ]
 )
 puts "  Alice's comedy order: #{result.success? ? 'confirmed' : result.error}"
 
 result = TicketPurchaseService.call(
   customer_email: "bob@example.com",
-  items: [{ ticket_type_id: comedy_front.id, quantity: 1 }]
+  items: [ { ticket_type_id: comedy_front.id, quantity: 1 } ]
 )
 puts "  Bob's front row order: #{result.success? ? 'confirmed' : result.error}"
 

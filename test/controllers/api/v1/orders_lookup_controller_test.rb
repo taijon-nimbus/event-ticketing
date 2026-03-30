@@ -27,7 +27,7 @@ class Api::V1::OrdersLookupControllerTest < ActionDispatch::IntegrationTest
 
     @bob_order = TicketPurchaseService.call(
       customer_email: "bob@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     ).order
   end
 
@@ -88,7 +88,7 @@ class Api::V1::OrdersLookupControllerTest < ActionDispatch::IntegrationTest
   test "orders are returned most recent first" do
     second_order = TicketPurchaseService.call(
       customer_email: "alice@example.com",
-      items: [{ ticket_type_id: @ga.id, quantity: 1 }]
+      items: [ { ticket_type_id: @ga.id, quantity: 1 } ]
     ).order
 
     get api_v1_orders_url, params: { email: "alice@example.com" }

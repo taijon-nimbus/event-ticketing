@@ -33,7 +33,7 @@ class PurchaseFlowIntegrationTest < ActionDispatch::IntegrationTest
         session.post "/api/v1/orders",
           params: {
             customer_email: "racer#{i}@example.com",
-            items: [{ ticket_type_id: ticket_type.id, quantity: 1 }]
+            items: [ { ticket_type_id: ticket_type.id, quantity: 1 } ]
           },
           as: :json
         { status: session.response.status, body: JSON.parse(session.response.body) }
@@ -64,7 +64,7 @@ class PurchaseFlowIntegrationTest < ActionDispatch::IntegrationTest
         session.post "/api/v1/orders",
           params: {
             customer_email: "vip#{i}@example.com",
-            items: [{ ticket_type_id: ticket_type.id, quantity: 3 }]
+            items: [ { ticket_type_id: ticket_type.id, quantity: 3 } ]
           },
           as: :json
         { status: session.response.status, body: JSON.parse(session.response.body) }
@@ -121,7 +121,7 @@ class PurchaseFlowIntegrationTest < ActionDispatch::IntegrationTest
     post "/api/v1/orders",
       params: {
         customer_email: "early@example.com",
-        items: [{ ticket_type_id: ticket_type.id, quantity: 1 }]
+        items: [ { ticket_type_id: ticket_type.id, quantity: 1 } ]
       },
       as: :json
 
@@ -134,7 +134,7 @@ class PurchaseFlowIntegrationTest < ActionDispatch::IntegrationTest
     post "/api/v1/orders",
       params: {
         customer_email: "late@example.com",
-        items: [{ ticket_type_id: ticket_type.id, quantity: 1 }]
+        items: [ { ticket_type_id: ticket_type.id, quantity: 1 } ]
       },
       as: :json
 

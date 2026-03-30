@@ -9,6 +9,6 @@ class CreateTicketTypes < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :ticket_types, [:event_id, :name], unique: true
+    add_index :ticket_types, [ :event_id, :name ], unique: true
   end
 end
