@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :events, only: [:index, :show]
-      resources :orders, only: [:create]
+      resources :orders, only: [:create, :index]
     end
   end
 end

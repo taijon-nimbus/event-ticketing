@@ -1,6 +1,18 @@
 module Api
   module V1
     class OrdersController < BaseController
+      def index
+        if params[:email].blank?
+          return render json: { error: "Email parameter is required" }, status: :bad_request
+        end
+
+        orders = Order.where(customer_email: params[:email])
+                      .includes(tickets: { ticket_type: :event })
+                      .order(created_at: :desc)
+
+        render json: orders.map { |o| order_json(o) }
+      end
+
       def create
         result = TicketPurchaseService.call(
           customer_email: params[:customer_email],
