@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   STATUSES = %w[upcoming active completed cancelled].freeze
 
+  has_many :ticket_types, dependent: :destroy
+
   validates :name, presence: true
   validates :location, presence: true
   validates :start_time, presence: true
